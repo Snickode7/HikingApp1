@@ -13,4 +13,8 @@ h3 {
     background-color: palegreen;
 }
 
+form {
+    display: inline-block;
+    text-align: center;
+}
 
