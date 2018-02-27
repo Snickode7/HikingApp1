@@ -5,7 +5,7 @@ using System.Web;
 
 namespace HikingApp.Models
 {
-    public class Trails
+    public class TrailsModel
     {
     }
 }
