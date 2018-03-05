@@ -1,4 +1,6 @@
-﻿@{
+﻿@model HikingApp.Models.TrailsListModel
+
+@{
     ViewBag.Title = "The Hiking Helper";
     ViewBag.Message = "Your Trail History";
 }
@@ -6,3 +8,25 @@
 <h3>@ViewBag.Message</h3>
 
 <p>Use this area to provide additional information.</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Trails</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (var i = 0; i < Model.Trails.Count; i++)
+        {
+        <tr>
+            <td>@Model.Trails[i].NameOfTrail</td>
+            <td>@Model.Trails[i].Date</td>
+            <td>@Model.Trails[i].Location</td>
+            <td>@Model.Trails[i].LengthOfTrail</td>
+            <td>@Model.Trails[i].Difficulty</td>
+            <td>@Model.Trails[i].WeatherConditions</td>
+            <td>@Model.Trails[i].Notes</td>
+        </tr>
+        }
+    </tbody>
+</table>

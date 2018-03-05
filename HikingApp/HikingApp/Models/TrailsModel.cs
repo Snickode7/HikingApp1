@@ -11,7 +11,7 @@ namespace HikingApp.Models
         public string NameOfTrail { get; set; }
         public string Date { get; set; }
         public string Location { get; set; }
-        public decimal LengthOfTrail { get; set; }
+        public string LengthOfTrail { get; set; }
         public string Difficulty { get; set; }
         public string WeatherConditions { get; set; }
         public string Notes { get; set; }
