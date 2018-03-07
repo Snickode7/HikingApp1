@@ -9,23 +9,63 @@ namespace HikingApp.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public static List<Trail> Trails = new List<Trail>
         {
-            return View();
-        }
+            new Trail { TrailId = 1, NameOfTrail = "Auxier Ridge Loop", Date = "August 9, 2017",
+                        Location = "Red River Gorge", LengthOfTrail = "5 miles", Difficulty = "Hard",
+                        WeatherConditions = "Sunny and Hot", Notes = "One of the best hikes in Ky!!" }
+        };
 
         public ActionResult TrailHistory()
         {
-            var trailsList = new TrailsListModel
+            var trailList = new TrailsListModel
             {
-                Trails = new List<TrailsModel>
+                // Convert each trail into a TrailsViewModel
+                Trails = Trails.Select(t => new TrailsViewModel
                 {
-                    new TrailsModel { TrailId = 1, NameOfTrail = "Auxier Ridge Loop", Date = "August 9, 2017",
-                                    Location = "Red River Gorge", LengthOfTrail = "5 miles", Difficulty = "Hard",
-                                    WeatherConditions = "Sunny and Hot", Notes = "One of the best hikes in Ky!!" }
-                }
+                    TrailId = t.TrailId,
+                    NameOfTrail = t.NameOfTrail,
+                    Date = t.Date,
+                    Location = t.Location,
+                    LengthOfTrail = t.LengthOfTrail,
+                    Difficulty = t.Difficulty,
+                    WeatherConditions = t.WeatherConditions,
+                    Notes = t.Notes
+
+
+                }).ToList()
             };
-            return View(trailsList);
+
+            return View(trailList);
+        }
+
+        public ActionResult Index()
+        {
+            var trailsViewModel = new TrailsViewModel();
+
+            return View("Index", trailsViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult AddTrail(TrailsViewModel trailsViewModel)
+        {
+            var nextTrailId = Trails.Max(t => t.TrailId) + 1;
+
+            var trail = new Trail
+            {
+                TrailId = nextTrailId,
+                NameOfTrail = trailsViewModel.NameOfTrail,
+                Date = trailsViewModel.Date,
+                Location = trailsViewModel.Location,
+                LengthOfTrail = trailsViewModel.LengthOfTrail,
+                Difficulty = trailsViewModel.Difficulty,
+                WeatherConditions = trailsViewModel.WeatherConditions,
+                Notes = trailsViewModel.Notes
+            };
+
+            Trails.Add(trail);
+
+            return RedirectToAction("TrailHistory");
         }
     }
 }

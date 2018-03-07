@@ -1,68 +1,70 @@
-﻿@{
+﻿@model HikingApp.Models.TrailsViewModel
+
+@{
     ViewBag.Title = "The Hiking Helper";
     ViewBag.Message = "Enter Trail: ";
 }
-    <h2>@ViewBag.Title</h2>
-    <h3>@ViewBag.Message</h3>
+<h2>@ViewBag.Title</h2>
+<h3>@ViewBag.Message</h3>
 
 <form method="post">
-        <div class="row formy">
+    <div class="row formy">
+
+        <div class="col-md-12 formy">
+
+            <div class="form-group">
+                <label for="NameOfTrail" class="control-label">Name of Trail</label>
+                <input type="text" id="NameOfTrail" name="NameOfTrail" class="form-control" value="@ViewBag.NameOfTrail" />
+            </div>
+
+            <div class="form-group">
+                <label for="Date" class="control-label">Date</label>
+                <input type="text" id="Date" name="Date" class="form-control" value="@ViewBag.Date" />
+            </div>
+
+            <div class="form-group">
+                <label for="Location" class="control-label">Location</label>
+                <input type="text" id="Location" name="Location" class="form-control" value="@ViewBag.Location" />
+            </div>
+
+            <div class="form-group">
+                <label for="LengthOfTrail" class="control-label">Length of Trail</label>
+                <input type="text" id="LengthOfTrail" name="LengthOfTrail" class="form-control" value="@ViewBag.LengthOfTrail" />
+            </div>
+
+            <div class="form-group">
+                <label for="Difficulty" class="control-label">Difficulty</label>
+                <input type="text" id="Difficutly" name="Difficulty" class="form-control" value="@ViewBag.Difficulty" />
+            </div>
+
+            <div class="form-group">
+                <label for="WeatherConditions" class="control-label">Weather Conditions</label>
+                <input type="text" id="WeatherConditions" name="WeatherConditions" class="form-control" value="@ViewBag.WeatherConditions" />
+            </div>
+
+
 
             <div class="col-md-12 formy">
 
-                    <div class="form-group">
-                        <label for="NameOfTrail" class="control-label">Name of Trail</label>
-                        <input type="text" id="NameOfTrail" name="NameOfTrail" class="form-control" value="@ViewBag.NameOfTrail" />
-                    </div>
+                <div class="form-group">
+                    <label for="Notes" class="control-label">Notes</label>
+                    <textarea id="Notes" name="Notes" class="form-control" rows="14" cols="20">@ViewBag.Notes</textarea>
+                </div>
 
-                    <div class="form-group">
-                        <label for="Date" class="control-label">Date</label>
-                        <input type="text" id="Date" name="Date" class="form-control" value="@ViewBag.Date" />
-                    </div>
+            </div>
 
-                    <div class="form-group">
-                        <label for="Location" class="control-label">Location</label>
-                        <input type="text" id="Location" name="Location" class="form-control" value="@ViewBag.Location" />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="LengthOfTrail" class="control-label">Length of Trail</label>
-                        <input type="text" id="LengthOfTrail" name="LengthOfTrail" class="form-control" value="@ViewBag.LengthOfTrail" />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="Difficulty" class="control-label">Difficulty</label>
-                        <input type="text" id="Difficutly" name="Difficulty" class="form-control" value="@ViewBag.Difficulty" />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="WeatherConditions" class="control-label">Weather Conditions</label>
-                        <input type="text" id="WeatherConditions" name="WeatherConditions" class="form-control" value="@ViewBag.WeatherConditions" />
-                    </div>
-
-
-
-                    <div class="col-md-12 formy">
-
-                        <div class="form-group">
-                            <label for="Notes" class="control-label">Notes</label>
-                            <textarea id="Notes" name="Notes" class="form-control" rows="14" cols="20">@ViewBag.Notes</textarea>
-                        </div>
-
-                    </div>
-
-                    <div class="col-md-12 formy">
-                        <div class="pad-top">
-                            <button type="submit" class="btn btn-success btn-lg margin-right">
-                                <span class="glyphicon glyphicon-save"></span> Save
-                            </button>
-                            <a href="@Url.Action("Index")" class="btn btn-warning btn-lg">
-                                <span class="glyphicon glyphicon-remove"></span> Cancel
-                            </a>
-                        </div>
-                    </div>
+            <div class="col-md-12 formy">
+                <div class="pad-top">
+                    <button type="submit" class="btn btn-success btn-lg margin-right">
+                        <span class="glyphicon glyphicon-save"></span> Save
+                    </button>
+                    <a href="@Url.Action("Index")" class="btn btn-warning btn-lg">
+                        <span class="glyphicon glyphicon-remove"></span> Cancel
+                    </a>
                 </div>
             </div>
+        </div>
+    </div>
 
 </form>
 

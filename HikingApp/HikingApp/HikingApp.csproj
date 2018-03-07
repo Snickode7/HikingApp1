@@ -146,8 +146,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Trails.cs" />
     <Compile Include="Models\TrailsListModel.cs" />
-    <Compile Include="Models\TrailsModel.cs" />
+    <Compile Include="Models\TrailsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -5,9 +5,9 @@ using System.Web;
 
 namespace HikingApp.Models
 {
-    public class TrailsModel
+    public class Trail
     {
-        public int? TrailId { get; set; }
+        public int TrailId { get; set; }
         public string NameOfTrail { get; set; }
         public string Date { get; set; }
         public string Location { get; set; }

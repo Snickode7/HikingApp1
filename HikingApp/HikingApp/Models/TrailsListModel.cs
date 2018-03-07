@@ -7,6 +7,6 @@ namespace HikingApp.Models
 {
     public class TrailsListModel
     {
-        public List<TrailsModel> Trails { get; set; }
+        public List<TrailsViewModel> Trails { get; set; }
     }
 }
