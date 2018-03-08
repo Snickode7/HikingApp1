@@ -9,6 +9,7 @@ namespace HikingApp.Controllers
 {
     public class HomeController : Controller
     {
+        
         public ActionResult AddTrail()
         {
             var trailsViewModel = new TrailsViewModel();
