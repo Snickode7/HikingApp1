@@ -9,6 +9,20 @@ namespace HikingApp.Controllers
 {
     public class HomeController : Controller
     {
+        public ActionResult AddTrail()
+        {
+            var trailsViewModel = new TrailsViewModel();
+
+            return View("AddTrail", trailsViewModel);
+        }
+
+        public ActionResult EditTrail()
+        {
+            var trailsViewModel = new TrailsViewModel();
+
+            return View("EditTrail", trailsViewModel);
+        }
+
         public static List<Trail> Trails = new List<Trail>
         {
             new Trail { TrailId = 1, NameOfTrail = "Auxier Ridge Loop", Date = "August 9, 2017",
@@ -39,13 +53,6 @@ namespace HikingApp.Controllers
             return View(trailList);
         }
 
-        public ActionResult Index()
-        {
-            var trailsViewModel = new TrailsViewModel();
-
-            return View("Index", trailsViewModel);
-        }
-
         [HttpPost]
         public ActionResult AddTrail(TrailsViewModel trailsViewModel)
         {
@@ -67,5 +74,9 @@ namespace HikingApp.Controllers
 
             return RedirectToAction("TrailHistory");
         }
+
+
+
+
     }
 }
