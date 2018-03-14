@@ -16,37 +16,35 @@
 
             <div class="col-md-12 formy">
 
+                <div class="form-group">
+                    @Html.LabelFor(m => m.NameOfTrail, new { @class = "control-label" })
+                    @Html.TextBoxFor(m => m.NameOfTrail, new { @class = "form-control" })
+                </div>
                 
+
                 <div class="form-group">
-                    @Html.LabelFor(t => t.NameOfTrail)
-                    @Html.TextBoxFor(t => t.NameOfTrail, new { @class = "form-control" })
-                    <!--<label for="NameOfTrail" class="control-label">Name of Trail</label>
-    <input type="text" id="NameOfTrail" name="NameOfTrail" class="form-control" value="@ViewBag.NameOfTrail" />-->
+                    @Html.LabelFor(m => m.Date, new { @class = "control-label" })
+                    @Html.TextBoxFor(m => m.Date, "{0:d}", new { @class = "form-control" })
                 </div>
 
                 <div class="form-group">
-                    <label for="Date" class="control-label">Date</label>
-                    <input type="text" id="Date" name="Date" class="form-control" value="@ViewBag.Date" />
+                    @Html.LabelFor(m => m.Location, new { @class = "control-label" })
+                    @Html.TextBoxFor(m => m.Location, new { @class = "form-control" })
                 </div>
 
                 <div class="form-group">
-                    <label for="Location" class="control-label">Location</label>
-                    <input type="text" id="Location" name="Location" class="form-control" value="@ViewBag.Location" />
+                    @Html.LabelFor(m => m.LengthOfTrail, new { @class = "control-label" })
+                    @Html.TextBoxFor(m => m.LengthOfTrail, new { @class = "form-control" })
                 </div>
 
                 <div class="form-group">
-                    <label for="LengthOfTrail" class="control-label">Length of Trail</label>
-                    <input type="text" id="LengthOfTrail" name="LengthOfTrail" class="form-control" value="@ViewBag.LengthOfTrail" />
+                    @Html.LabelFor(m => m.Difficulty, new { @class = "control-label" })
+                    @Html.TextBoxFor(m => m.Difficulty, new { @class = "form-control" })
                 </div>
 
                 <div class="form-group">
-                    <label for="Difficulty" class="control-label">Difficulty</label>
-                    <input type="text" id="Difficutly" name="Difficulty" class="form-control" value="@ViewBag.Difficulty" />
-                </div>
-
-                <div class="form-group">
-                    <label for="WeatherConditions" class="control-label">Weather Conditions</label>
-                    <input type="text" id="WeatherConditions" name="WeatherConditions" class="form-control" value="@ViewBag.WeatherConditions" />
+                    @Html.LabelFor(m => m.WeatherConditions, new { @class = "control-label" })
+                    @Html.TextBoxFor(m => m.WeatherConditions, new { @class = "form-control" })
                 </div>
 
 
@@ -54,8 +52,8 @@
                 <div class="col-md-12 formy">
 
                     <div class="form-group">
-                        <label for="Notes" class="control-label">Notes</label>
-                        <textarea id="Notes" name="Notes" class="form-control" rows="14" cols="20">@ViewBag.Notes</textarea>
+                        @Html.LabelFor(m => m.Notes, new { @class = "control-label" })
+                        @Html.TextAreaFor(m => m.Notes, 10, 15,  new { @class = "form-control" })
                     </div>
 
 
