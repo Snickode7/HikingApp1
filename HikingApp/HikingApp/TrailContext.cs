@@ -1,8 +1,8 @@
+using HikingApp.Models;
+using System.Data.Entity;
+
 namespace HikingApp
 {
-    using System;
-    using System.Data.Entity;
-    using System.Linq;
 
     public class TrailContext : DbContext
     {
@@ -12,10 +12,9 @@ namespace HikingApp
         // 
         // If you wish to target a different database and/or database provider, modify the 'TrailContext' 
         // connection string in the application configuration file.
-        public TrailContext()
-            : base("name=TrailContext")
-        {
-        }
+        public TrailContext() : base("name=TrailContext") {}
+
+        public virtual DbSet<Trail> Trails { get; set; }
 
         // Add a DbSet for each entity type that you want to include in your model. For more information 
         // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.

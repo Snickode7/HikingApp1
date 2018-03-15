@@ -17,6 +17,7 @@ namespace HikingApp
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "AddTrail", id = UrlParameter.Optional }
+                          
             );
         }
     }

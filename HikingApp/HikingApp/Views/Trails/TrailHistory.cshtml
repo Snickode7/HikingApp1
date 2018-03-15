@@ -31,6 +31,7 @@
             <td>@Model.Trails[i].Difficulty</td>
             <td>@Model.Trails[i].WeatherConditions</td>
             <td>@Model.Trails[i].Notes</td>
+            <td>@Html.ActionLink("Info", "TrailInfo", new { id = Model.Trails[i].TrailId })</td>
         </tr>
         }
     </tbody>

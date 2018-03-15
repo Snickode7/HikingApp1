@@ -48,32 +48,7 @@ namespace HikingApp.Controllers
             return View("AddTrail", trailsViewModel);
         }
 
-        public ActionResult TrailHistory()
-        {
-            var trailList = new TrailsListModel
-            {
-                // Convert each trail into a TrailsViewModel
-                Trails = Trails.Select(m => new TrailsViewModel
-                {
-                    TrailId = m.TrailId,
-                    NameOfTrail = m.NameOfTrail,
-                    Date = m.Date,
-                    Location = m.Location,
-                    LengthOfTrail = m.LengthOfTrail,
-                    Difficulty = m.Difficulty,
-                    WeatherConditions = m.WeatherConditions,
-                    Notes = m.Notes
 
-
-                }).ToList()
-            };
-
-            return View(trailList);
-
-
-
-
-        }
     }
 
 }

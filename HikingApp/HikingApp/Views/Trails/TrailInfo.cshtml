@@ -1,0 +1,41 @@
+﻿@model HikingApp.Models.TrailsViewModel
+@{
+    ViewBag.Title = "TrailInfo";
+}
+
+<h2>@Model.NameOfTrail</h2>
+
+<div class="row">
+    <div class="col-sm-12 form-group">
+        @Html.LabelFor(m => m.NameOfTrail)
+        <br />@Html.DisplayFor(m => m.NameOfTrail)
+    </div>
+    <div class="col-sm-12 form-group">
+        @Html.LabelFor(m => m.Date)
+        <br />@Html.DisplayFor(m => m.Date)
+    </div>
+    <div class="col-sm-12 form-group">
+        @Html.LabelFor(m => m.Location)
+        <br />@Html.DisplayFor(m => m.Location)
+    </div>
+    <div class="col-sm-12 form-group">
+        @Html.LabelFor(m => m.LengthOfTrail)
+        <br />@Html.DisplayFor(m => m.LengthOfTrail)
+    </div>
+    <div class="col-sm-12 form-group">
+        @Html.LabelFor(m => m.Difficulty)
+        <br />@Html.DisplayFor(m => m.Difficulty)
+    </div>
+    <div class="col-sm-12 form-group">
+        @Html.LabelFor(m => m.WeatherConditions)
+        <br />@Html.DisplayFor(m => m.WeatherConditions)
+    </div>
+    <div class="col-sm-12 form-group">
+        @Html.LabelFor(m => m.Notes)
+        <br />@Html.DisplayFor(m => m.Notes)
+    </div>
+
+    <div class="col-sm-12">
+        @Html.ActionLink("Done", "TrailHistory", null, new { @class = "btn btn-primary" })
+    </div>
+</div>
