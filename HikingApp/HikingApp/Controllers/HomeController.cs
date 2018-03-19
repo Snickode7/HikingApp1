@@ -19,27 +19,7 @@ namespace HikingApp.Controllers
                         WeatherConditions = "Sunny and Hot", Notes = "One of the best hikes in Ky!!" }
         };
 
-        [HttpPost]
-        public ActionResult AddTrail(TrailsViewModel trailsViewModel)
-        {
-            var nextTrailId = Trails.Max(m => m.TrailId) + 1;
-
-            var trail = new Trail
-            {
-                TrailId = nextTrailId,
-                NameOfTrail = trailsViewModel.NameOfTrail,
-                Date = trailsViewModel.Date,
-                Location = trailsViewModel.Location,
-                LengthOfTrail = trailsViewModel.LengthOfTrail,
-                Difficulty = trailsViewModel.Difficulty,
-                WeatherConditions = trailsViewModel.WeatherConditions,
-                Notes = trailsViewModel.Notes
-            };
-
-            Trails.Add(trail);
-
-            return View("TrailHistory");
-        }
+        
 
         public ActionResult AddTrail()
         {
