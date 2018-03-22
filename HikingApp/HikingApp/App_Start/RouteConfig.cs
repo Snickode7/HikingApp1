@@ -16,7 +16,7 @@ namespace HikingApp
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "AddTrail", id = UrlParameter.Optional }
+                defaults: new { controller = "Trails", action = "AddTrail", id = UrlParameter.Optional }
                           
             );
         }

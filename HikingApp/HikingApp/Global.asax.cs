@@ -10,11 +10,11 @@ namespace HikingApp
 {
     public class MvcApplication : System.Web.HttpApplication
     {
-        protected void Application_Start()
+        protected void Application_Start(object sender, EventArgs e)
         {
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            RouteConfig.RegisterRoutes(System.Web.Routing.RouteTable.Routes); ;
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
     }

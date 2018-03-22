@@ -7,6 +7,10 @@
 <h2>@ViewBag.Title</h2>
 <h3>@ViewBag.Message</h3>
 
+<div class="col-sm-12">
+    @Html.ActionLink("Add Trail", "TrailAdd", "Trails", null, new { @class = "btn btn-primary" })
+</div>
+
 
 <table class="table table-striped">
     <thead>
@@ -31,30 +35,32 @@
             <td>@Model.Trails[i].Difficulty</td>
             <td>@Model.Trails[i].WeatherConditions</td>
             <td>@Model.Trails[i].Notes</td>
-            <td>@Html.ActionLink("Info", "TrailInfo", new { id = Model.Trails[i].TrailId })
-            | @Html.ActionLink("Edit", "TrailEdit", new { id = Model.Trails[i].TrailId })</td>
-            | <a data-toggle="modal" href="@("#deleteTrailModal" + i)">Delete</a>
-						<div class="modal fade" id="@("deleteTrailModal" + i)" tabindex="-1" role="dialog">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									@using (Html.BeginForm("DeleteTrail", "Trails"))
-									{
-										<input type="hidden" value="@Model.Trails[i].TrailId" name="TrailId" />
-										<div class="modal-header">
-											<button type="button" class="close" data-dismiss="modal">&times;</button>
-											<h4 class="modal-title">Delete @Model.Trails[i].NameOfTrail</h4>
-										</div>
-										<div class="modal-body">
-											Are you sure you want to delete @Model.Trails[i].NameOfTrail
-										</div>
-										<div class="modal-footer">
-											<button type="submit" class="btn btn-primary">Yes</button>
-											<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-										</div>
-									}
-								</div>
-							</div>
-						</div> 
+            <td>
+                @Html.ActionLink("Info", "TrailInfo", new { id = Model.Trails[i].TrailId })
+                        | @Html.ActionLink("Edit", "TrailEdit", new { id = Model.Trails[i].TrailId })
+                        | <a data-toggle="modal" href="@("#deleteTrailModal" + i)">Delete</a>
+                          <div class="modal fade" id="@("deleteTrailModal" + i)" tabindex="-1" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    @using (Html.BeginForm("DeleteTrail", "Trails"))
+                        {
+                                <input type="hidden" value="@Model.Trails[i].TrailId" name="TrailId" />
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Delete @Model.Trails[i].NameOfTrail</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure you want to delete @Model.Trails[i].NameOfTrail
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Yes</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                    </div>
+}
+                                </div>
+                            </div>
+                        </div>
+             </td>
         </tr>
 
         }

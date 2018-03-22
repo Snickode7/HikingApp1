@@ -155,6 +155,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803211915148_InitialMigration.cs" />
+    <Compile Include="Migrations\201803211915148_InitialMigration.Designer.cs">
+      <DependentUpon>201803211915148_InitialMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Trail.cs" />
     <Compile Include="Models\TrailsListModel.cs" />
     <Compile Include="Models\TrailsViewModel.cs" />
@@ -196,13 +201,14 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\AddTrail.cshtml" />
+    <Content Include="Views\Trails\AddTrail.cshtml" />
     <Content Include="Views\Trails\TrailHistory.cshtml" />
-    <Content Include="Views\Home\EditTrail.cshtml" />
+    <Content Include="Views\Trails\EditTrail.cshtml" />
     <Content Include="Views\Trails\TrailInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -216,6 +222,11 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201803211915148_InitialMigration.resx">
+      <DependentUpon>201803211915148_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

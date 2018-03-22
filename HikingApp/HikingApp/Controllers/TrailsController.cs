@@ -9,107 +9,128 @@ namespace HikingApp.Controllers
 {
     public class TrailsController : Controller
     {
-        // GET: Trail
-        public static List<Trail> Trails = new List<Trail>
-        {
-            new Trail {TrailId = 1, NameOfTrail = "Auxier Ridge Loop", Date = "August 9, 2017",
-                       Location = "Red River Gorge", LengthOfTrail = "5 miles", Difficulty = "Hard",
-                       WeatherConditions = "Sunny and Hot", Notes = "One of the best hikes in Ky!!"}
-        };
+       
 
         public ActionResult TrailHistory()
         {
-            var trailList = new TrailsListModel
+            using (var trailContext = new TrailContext())
             {
-                // Convert each trail into a TrailsViewModel
-                Trails = Trails.Select(m => new TrailsViewModel
+                var trailList = new TrailsListModel
                 {
-                    TrailId = m.TrailId,
-                    NameOfTrail = m.NameOfTrail,
-                    Date = m.Date,
-                    Location = m.Location,
-                    LengthOfTrail = m.LengthOfTrail,
-                    Difficulty = m.Difficulty,
-                    WeatherConditions = m.WeatherConditions,
-                    Notes = m.Notes
+                    // Convert each trail into a TrailsViewModel
+                    Trails = trailContext.Trails.Select(m => new TrailsViewModel
+                    {
+                        TrailId = m.TrailId,
+                        NameOfTrail = m.NameOfTrail,
+                        Date = m.Date,
+                        Location = m.Location,
+                        LengthOfTrail = m.LengthOfTrail,
+                        Difficulty = m.Difficulty,
+                        WeatherConditions = m.WeatherConditions,
+                        Notes = m.Notes
 
 
-                }).ToList()
-            };
+                    }).ToList()
+                };
 
-            return View(trailList);
+                return View(trailList);
+
+            }
+
+            
         }
 
         public ActionResult TrailInfo(int id)
         {
-            var trail = Trails.SingleOrDefault(m => m.TrailId == id);
-            if (trail != null)
+            using (var trailContext = new TrailContext())
             {
-                var trailsViewModel = new TrailsViewModel
+
+                var trail = trailContext.Trails.SingleOrDefault(m => m.TrailId == id);
+                if (trail != null)
                 {
-                    TrailId = trail.TrailId,
-                    NameOfTrail = trail.NameOfTrail,
-                    Date = trail.Date,
-                    Location = trail.Location,
-                    LengthOfTrail = trail.LengthOfTrail,
-                    Difficulty = trail.Difficulty,
-                    WeatherConditions = trail.WeatherConditions,
-                    Notes = trail.Notes
-                };
+                    var trailsViewModel = new TrailsViewModel
+                    {
+                        TrailId = trail.TrailId,
+                        NameOfTrail = trail.NameOfTrail,
+                        Date = trail.Date,
+                        Location = trail.Location,
+                        LengthOfTrail = trail.LengthOfTrail,
+                        Difficulty = trail.Difficulty,
+                        WeatherConditions = trail.WeatherConditions,
+                        Notes = trail.Notes
+                    };
 
-                return View(trailsViewModel);
+                    return View(trailsViewModel);
+                }
+
             }
-
             return new HttpNotFoundResult();
         }
 
+
         public ActionResult TrailAdd()
         {
-            var trailViewModel = new TrailsViewModel();
+            var trailsViewModel = new TrailsViewModel();
 
-            return View("EditTrail", trailViewModel);
+            return View("AddTrail", trailsViewModel);
         }
+
+        public ActionResult AddTrail()
+        {
+            var trailsViewModel = new TrailsViewModel();
+
+            return View("AddTrail", trailsViewModel);
+        }
+
 
         [HttpPost]
         public ActionResult AddTrail(TrailsViewModel trailsViewModel)
         {
-            var nextTrailId = Trails.Max(m => m.TrailId) + 1;
-
-            var trail = new Trail
+            using (var trailContext = new TrailContext())
             {
-                TrailId = nextTrailId,
-                NameOfTrail = trailsViewModel.NameOfTrail,
-                Date = trailsViewModel.Date,
-                Location = trailsViewModel.Location,
-                LengthOfTrail = trailsViewModel.LengthOfTrail,
-                Difficulty = trailsViewModel.Difficulty,
-                WeatherConditions = trailsViewModel.WeatherConditions,
-                Notes = trailsViewModel.Notes
-            };
 
-            Trails.Add(trail);
-
-            return View("TrailHistory");
-        }
-
-        public ActionResult TrailEdit(int id)
-        {
-            var trail = Trails.SingleOrDefault(p => p.TrailId == id);
-            if (trail != null)
-            {
-                var trailsViewModel = new TrailsViewModel
+                var trail = new Trail
                 {
-                    TrailId = trail.TrailId,
-                    NameOfTrail = trail.NameOfTrail,
-                    Date = trail.Date,
-                    Location = trail.Location,
-                    LengthOfTrail = trail.LengthOfTrail,
-                    Difficulty = trail.Difficulty,
-                    WeatherConditions = trail.WeatherConditions,
-                    Notes = trail.Notes
+                    NameOfTrail = trailsViewModel.NameOfTrail,
+                    Date = trailsViewModel.Date,
+                    Location = trailsViewModel.Location,
+                    LengthOfTrail = trailsViewModel.LengthOfTrail,
+                    Difficulty = trailsViewModel.Difficulty,
+                    WeatherConditions = trailsViewModel.WeatherConditions,
+                    Notes = trailsViewModel.Notes
                 };
 
-                return View("EditTrail", trailsViewModel);
+                trailContext.Trails.Add(trail);
+                trailContext.SaveChanges();
+            }
+
+            return RedirectToAction("TrailHistory");
+        }
+        
+            
+        public ActionResult TrailEdit(int id)
+        {
+
+            using (var trailContext = new TrailContext())
+            {
+                var trail = trailContext.Trails.SingleOrDefault(m => m.TrailId == id);
+                if (trail != null)
+                {
+                    var trailsViewModel = new TrailsViewModel
+                    {
+                        TrailId = trail.TrailId,
+                        NameOfTrail = trail.NameOfTrail,
+                        Date = trail.Date,
+                        Location = trail.Location,
+                        LengthOfTrail = trail.LengthOfTrail,
+                        Difficulty = trail.Difficulty,
+                        WeatherConditions = trail.WeatherConditions,
+                        Notes = trail.Notes
+                    };
+
+                    return View("EditTrail", trailsViewModel);
+                }
+
             }
 
             return new HttpNotFoundResult();
@@ -118,34 +139,48 @@ namespace HikingApp.Controllers
         [HttpPost]
         public ActionResult EditTrail(TrailsViewModel trailsViewModel)
         {
-            var trail = Trails.SingleOrDefault(m => m.TrailId == trailsViewModel.TrailId);
-
-            if (trail != null)
+            using (var trailContext = new TrailContext())
             {
-                trail.NameOfTrail = trailsViewModel.NameOfTrail;
-                trail.Date = trailsViewModel.Date;
-                trail.Location = trailsViewModel.Location;
-                trail.LengthOfTrail = trailsViewModel.LengthOfTrail;
-                trail.Difficulty = trailsViewModel.Difficulty;
-                trail.WeatherConditions = trailsViewModel.WeatherConditions;
-                trail.Notes = trailsViewModel.Notes;
+                var trail = trailContext.Trails.SingleOrDefault(m => m.TrailId == trailsViewModel.TrailId);
 
-                return RedirectToAction("TrailHistory");
+                if (ModelState.IsValid)
+                {
+                    trail.NameOfTrail = trailsViewModel.NameOfTrail;
+                    trail.Date = trailsViewModel.Date;
+                    trail.Location = trailsViewModel.Location;
+                    trail.LengthOfTrail = trailsViewModel.LengthOfTrail;
+                    trail.Difficulty = trailsViewModel.Difficulty;
+                    trail.WeatherConditions = trailsViewModel.WeatherConditions;
+                    trail.Notes = trailsViewModel.Notes;
+                    trailContext.SaveChanges();
+
+                    return RedirectToAction("TrailHistory");
+                }
+
+                return new HttpNotFoundResult();
+
             }
 
-            return new HttpNotFoundResult();
-        }
+                
+         }
+
 
         [HttpPost]
         public ActionResult DeleteTrail(TrailsViewModel trailsViewModel)
         {
-            var trail = Trails.SingleOrDefault(m => m.TrailId == trailsViewModel.TrailId);
 
-            if (trail != null)
+            using (var trailContext = new TrailContext())
             {
-                Trails.Remove(trail);
+                var trail = trailContext.Trails.SingleOrDefault(m => m.TrailId == trailsViewModel.TrailId);
 
-                return RedirectToAction("TrailHistory");
+                if (trail != null)
+                {
+                    trailContext.Trails.Remove(trail);
+                    trailContext.SaveChanges();
+
+                    return RedirectToAction("TrailHistory");
+                }
+   
             }
 
             return new HttpNotFoundResult();
