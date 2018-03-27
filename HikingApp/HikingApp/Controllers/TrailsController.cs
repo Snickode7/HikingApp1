@@ -10,7 +10,8 @@ namespace HikingApp.Controllers
     public class TrailsController : Controller
     {
        
-
+        /// ******* Index Controller*************///
+        
         public ActionResult TrailHistory()
         {
             using (var trailContext = new TrailContext())
@@ -39,6 +40,8 @@ namespace HikingApp.Controllers
 
             
         }
+
+        /// ******* Info Page Controller*************///
 
         public ActionResult TrailInfo(int id)
         {
@@ -83,6 +86,8 @@ namespace HikingApp.Controllers
         }
 
 
+        /// ******* AddTrail Controller*************///
+
         [HttpPost]
         public ActionResult AddTrail(TrailsViewModel trailsViewModel)
         {
@@ -106,7 +111,10 @@ namespace HikingApp.Controllers
 
             return RedirectToAction("TrailHistory");
         }
-        
+
+
+        /// ******* Edit(Get) Controller*************///
+
         [HttpGet]    
         public ActionResult EditTrail(int id)
         {
@@ -136,6 +144,8 @@ namespace HikingApp.Controllers
             return new HttpNotFoundResult();
         }
 
+        /// ******* Edit(Post) Controller*************///
+
         [HttpPost]
         public ActionResult EditTrail(TrailsViewModel trailsViewModel)
         {
@@ -164,6 +174,8 @@ namespace HikingApp.Controllers
                 
          }
 
+
+        /// ******* Delete Controller*************///
 
         [HttpPost]
         public ActionResult DeleteTrail(TrailsViewModel trailsViewModel)
