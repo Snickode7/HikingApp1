@@ -37,7 +37,7 @@
             <td>@Model.Trails[i].Notes</td>
             <td>
                 @Html.ActionLink("Info", "TrailInfo", new { id = Model.Trails[i].TrailId })
-                        | @Html.ActionLink("Edit", "TrailEdit", new { id = Model.Trails[i].TrailId })
+                        | @Html.ActionLink("Edit", "EditTrail", new { id = Model.Trails[i].TrailId })
                         | <a data-toggle="modal" href="@("#deleteTrailModal" + i)">Delete</a>
                           <div class="modal fade" id="@("deleteTrailModal" + i)" tabindex="-1" role="dialog">
                             <div class="modal-dialog">

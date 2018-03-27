@@ -1,8 +1,9 @@
 ﻿@model HikingApp.Models.TrailsViewModel
 
 @{
-    var isEditMode = Model.TrailId != null;
-    ViewBag.Title = isEditMode ? "Edit " + Model.NameOfTrail : "Add Trail";
+     
+     var isEditMode = Model.TrailId != null;
+     ViewBag.Title = isEditMode ? "Edit " + Model.NameOfTrail : "Add Trail";
 }
 
 <h2>EditTrail</h2>
@@ -10,7 +11,7 @@
 <form method="post">
 
 
-    @using (Html.BeginForm())
+    @using (Html.BeginForm(isEditMode ? "EditTrail" : "AddTrail", "Trail"))
     {
         @Html.ValidationSummary(true)
         

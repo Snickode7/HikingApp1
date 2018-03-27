@@ -107,8 +107,8 @@ namespace HikingApp.Controllers
             return RedirectToAction("TrailHistory");
         }
         
-            
-        public ActionResult TrailEdit(int id)
+        [HttpGet]    
+        public ActionResult EditTrail(int id)
         {
 
             using (var trailContext = new TrailContext())
@@ -143,7 +143,7 @@ namespace HikingApp.Controllers
             {
                 var trail = trailContext.Trails.SingleOrDefault(m => m.TrailId == trailsViewModel.TrailId);
 
-                if (ModelState.IsValid)
+                if (trail != null)
                 {
                     trail.NameOfTrail = trailsViewModel.NameOfTrail;
                     trail.Date = trailsViewModel.Date;
