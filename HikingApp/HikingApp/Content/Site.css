@@ -21,11 +21,7 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    max-width: 90%;
 }
 
-.formy {
-    margin: 0 auto;
-    width: 75%;
-}
 

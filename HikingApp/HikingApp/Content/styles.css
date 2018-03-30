@@ -6,6 +6,7 @@
 
 h3 {
    color: darkgreen;
+   text-align: center;
 }
 
 
@@ -15,5 +16,10 @@ h3 {
 
 body {
     background-color: darkblue;
+}
+
+.area51{
+    margin: 0 auto;
+    padding-left: 50%;
 }
 
